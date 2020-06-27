@@ -62,15 +62,24 @@
       <v-col
         sm="12"
       >
-        <h2>Follow CDC Guidlines:</h2>
-      </v-col>
-      <v-col
-        sm="12"
-      >
         <v-select
+        label="Follow CDC Guidelines"
           :items="guidelineOptions"
           item-text="name"
           item-value="value"></v-select>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-spacer></v-spacer>
+      <v-col cols="3">
+        <v-btn primary to="/">
+          Home
+        </v-btn>
+      </v-col>
+      <v-col cols="3">
+        <v-btn primary>
+          Save
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -79,7 +88,7 @@
 <script>
 
 export default {
-  name: 'Profile',
+  name: 'MyProfile',
   components: {
   },
   data: () => ({

@@ -42,45 +42,11 @@
       clipped-left
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>COVID-19 Risk Score > {{ currentRoute }}</v-toolbar-title>
+      <v-toolbar-title>{{ currentRoute }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-menu 
-        offset-y
-        bottom
-      >
-      <template v-slot:activator="{ on, attrs }">
-        <v-avatar
-          color="indigo"
-          v-bind="attrs"
-          v-on="on"
-        >
-          <v-icon dark x-large>mdi-account-circle</v-icon>
-        </v-avatar>
-      </template>
-      <v-list dense>
-        <v-list-item
-          v-for="page in profilePages"
-          :key="page.name"
-          :to=page.route
-        >
-          <v-list-item-title>
-            {{ page.name }}
-          </v-list-item-title>
-        </v-list-item>      
-      </v-list>
-      <!-- <v-container>
-        <v-row class="align-items-center" dense>
-          <v-col cols="6">
-            <v-icon class="d-inline-flex">mdi-eye</v-icon>
-          </v-col>
-          <v-col cols="6" >
-            <v-switch class="d-inline-flex" v-model="$vuetify.theme.dark"></v-switch>
-          </v-col>
-        </v-row>    
-      </v-container> -->
-    </v-menu>
+      
     </v-app-bar>
 
     <!--Main content-->
@@ -100,11 +66,24 @@
 
     <!--Footer-->
     <v-footer app>
+      <v-btn
+        icon
+        to="/"
+        large
+      >
+          <v-icon dark x-large>mdi-home</v-icon>
+      </v-btn>  
+      <v-spacer></v-spacer>
       <span>&copy;</span>
       <span>{{ currentYear }} COVID-19 Risk Assessment</span>
       <v-spacer></v-spacer>
-      <v-icon >mdi-eye</v-icon>
-      <v-switch v-model="$vuetify.theme.dark"></v-switch>  
+      <v-btn
+        icon
+        to="/profile"
+        large
+      >
+          <v-icon dark x-large>mdi-account-circle</v-icon>
+      </v-btn>      
     </v-footer>
   </v-app>
 </template>
