@@ -14,6 +14,7 @@
       </v-col>
       <v-col cols="12" class="align-start-btn">
         <v-btn 
+          color="red"
           fab 
           x-large
           to="/riskform">
