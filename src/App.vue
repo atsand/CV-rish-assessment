@@ -117,9 +117,13 @@ export default {
       {name: "Home",
       route: "/",
       icon: "mdi-home"},
-      {name: "Profile Settings",
+      {name: "My Profile",
       route: "/profile",
       icon: "mdi-account"
+      },
+      {name: "Risk Form",
+      route: "/riskform",
+      icon: "mdi-format-list-checkbox"
       },
     ],
   }),
