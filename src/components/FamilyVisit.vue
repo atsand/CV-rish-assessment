@@ -31,6 +31,7 @@
         ></v-text-field>
       </v-col>
     </v-row>
+    <!-- need to make this a v-for and add items to object array -->
     <v-row 
       dense
       justify="center">

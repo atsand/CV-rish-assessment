@@ -13,6 +13,7 @@
       </v-col>
     </v-row>
     <component :is="selectedEvent"></component>
+    <!-- need to make submit button here -->
   </v-container>
 </template>
 
