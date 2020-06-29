@@ -63,7 +63,7 @@
         sm="12"
       >
         <v-select
-        label="Follow CDC Guidelines"
+          label="Follow CDC Guidelines"
           :items="guidelineOptions"
           item-text="name"
           item-value="value"></v-select>

@@ -5,11 +5,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    riskScore: null
   },
-  mutations: {
+  mutations: { // syncronous
+    setRiskScore (state, payload) {
+      state.riskScore = payload
+    }
   },
-  actions: {
+  actions: { // asyncronous
+    async randomizeRisk (state) {
+      var newRisk = Math.floor(Math.random() * 101)
+      // this.setRiskScore(newRisk)
+      state.commit('setRiskScore', newRisk)
+    }
   },
   modules: {
+  },
+  getters: {
+    getRiskScore (state) {
+      return state.riskScore
+    }
   }
 })

@@ -112,6 +112,8 @@ setInterval(function() {
 #chartdiv {
   width: 100%;
   height: 200px;
+  margin-top: -50px;
+  margin-bottom: -50px;
 }
 
 </style>

@@ -3,7 +3,8 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      clipped
+      bottom
+      height="auto"
     >
     <!--Items in nav drawer-->
     <!-- Clean up and add links to object array in data -->
@@ -24,7 +25,11 @@
       </v-list>
       <v-spacer></v-spacer>
       <template v-slot:append>
-        <v-row justify="center" class="align-items-center" dense>
+        <v-row 
+          justify="center" 
+          class="align-items-center" 
+          dense
+        >
           <v-col cols="3" center>
             <v-icon large>mdi-eye</v-icon>
           </v-col>
@@ -41,38 +46,58 @@
       app
       clipped-left
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>{{ currentRoute }}</v-toolbar-title>
-
       <v-spacer></v-spacer>
-
-      
+      <riskIcon
+        v-if="riskScore"
+      ></riskIcon>
     </v-app-bar>
 
     <!--Main content-->
-    <v-main>
-      <v-container>
-        <v-row
-            justify="center">
-          <v-col
-            lg="6"
-            md="8"
-            sm=12>
-            <router-view/>
-          </v-col>
-        </v-row>
-      </v-container>
+    <v-main class="main-content">
+      <v-content app>
+        <router-view/>
+      </v-content>
     </v-main>
 
+    <!-- Bottom Navigation -->
+    <v-bottom-navigation app
+      v-model="activeBtn" 
+      grow fixed
+    >
+      <v-btn icon>
+        <v-icon @click.stop="drawer = !drawer">mdi-menu</v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        large
+        @click="randomizeRisk"
+      >
+          <v-icon  x-large>mdi-help-circle</v-icon>
+      </v-btn>   
+      <v-btn
+        icon
+        to="/profile"
+        large
+      >
+          <v-icon dark x-large>mdi-account-circle</v-icon>
+      </v-btn> 
+    </v-bottom-navigation>
+
+
+
     <!--Footer-->
-    <v-footer app>
+    <!-- <v-footer app>
+      <v-btn icon>
+        <v-icon @click.stop="drawer = !drawer">mdi-menu</v-icon>
+      </v-btn>
       <v-btn
         icon
         to="/"
         large
-      >
-          <v-icon dark x-large>mdi-home</v-icon>
-      </v-btn>  
+        @click="randomizeRisk">
+        <v-icon>mdi-help-circle</v-icon>
+      </v-btn>
       <v-spacer></v-spacer>
       <span>&copy;</span>
       <span>{{ currentYear }} COVID-19 Risk Assessment</span>
@@ -82,9 +107,10 @@
         to="/profile"
         large
       >
-          <v-icon dark x-large>mdi-account-circle</v-icon>
-      </v-btn>      
-    </v-footer>
+        <v-icon dark x-large>mdi-account-circle</v-icon>
+      </v-btn>
+    </v-footer> -->
+ 
   </v-app>
 </template>
 <!--<template>
@@ -98,37 +124,59 @@
 </template> -->
 
 <script>
+import RiskIcon from './components/RiskIcon'
+
 export default {
   name: 'App',
   components: {
+    RiskIcon
   },
   data: () => ({
+    activeBtn: 1,
     activeComponent: 'Home',
     drawer: false,
     profilePages: [
-      {name: "Home",
-      value: "home",
-      route: "/"},
-      {name: "Profile Settings",
-      value: "profile settings",
-      route: "/profile"},
+      {
+        name: "Home",
+        value: "home",
+        route: "/"},
+      {
+        name: "Profile Settings",
+        value: "profile settings",
+        route: "/profile"},
     ],
     navigationLinks: [
-      {name: "Home",
-      route: "/",
-      icon: "mdi-home"},
-      {name: "Profile Settings",
-      route: "/profile",
-      icon: "mdi-account"
+      {
+        name: "Home",
+        route: "/",
+        icon: "mdi-home"
+      },
+      {
+        name: "My Profile",
+        route: "/profile",
+        icon: "mdi-account"
+      },
+      {
+        name: "Risk Form",
+        route: "/riskform",
+        icon: "mdi-format-list-checkbox"
       },
     ],
   }),
+  methods: {
+    randomizeRisk () {
+      this.$store.dispatch('randomizeRisk')
+    }
+  },
   computed: {
     currentRoute () {
       return this.$route.name;
     },
     currentYear () {
        return new Date().getFullYear();
+    },
+    riskScore () {
+      return this.$store.getters.getRiskScore
     }
   },
 };
@@ -136,7 +184,9 @@ export default {
 
 <style>
 .main-container{
-  min-width: 50%;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  /* height: 90vh; */
 }
 .align-items-center{
   align-items: center;

@@ -1,18 +1,17 @@
 <template>
-  <v-container>
+  <v-container fill-height>
     <v-row 
-      justify="center"
+      justify="space-around"
       align="center"
+      class="flex-column full-height"
     >
-      <v-col cols="12">
+      <v-col>
         <homegauge></homegauge>
       </v-col>
-      <v-col
-        cols="8"
-      >
+      <v-col >
         <h2 class="welcome-title">COVID-19<br/>Risk Assessment</h2>
       </v-col>
-      <v-col cols="12" class="align-start-btn">
+      <v-col class="align-start-btn">
         <v-btn 
           color="red"
           fab 
@@ -45,5 +44,8 @@ export default {
 .align-start-btn{
   text-justify: center;
   text-align: center;
+}
+.full-height{
+  height: 100vw;
 }
 </style>
