@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height>
+  <v-container fill-height class="home-container">
     <v-row 
       justify="space-around"
       align="center"
@@ -47,5 +47,9 @@ export default {
 }
 .full-height{
   height: 100vw;
+}
+.home-container{
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
 </style>

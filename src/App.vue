@@ -54,37 +54,37 @@
     </v-app-bar>
 
     <!--Main content-->
-    <v-main class="main-content">
-      <v-content app>
-        <router-view/>
-      </v-content>
+    <v-main app>
+      <router-view/>
     </v-main>
 
     <!-- Bottom Navigation -->
-    <v-bottom-navigation app
+    <v-bottom-navigation 
+      app
       v-model="activeBtn" 
-      grow fixed
+      grow 
+      fixed
+      color="primary"
     >
-      <v-btn icon>
-        <v-icon @click.stop="drawer = !drawer">mdi-menu</v-icon>
+      <v-btn
+        @click.stop="drawer = !drawer"
+        value="1">
+        <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-btn
-        icon
         large
         @click="randomizeRisk"
+        value="2"
       >
           <v-icon  x-large>mdi-help-circle</v-icon>
       </v-btn>   
       <v-btn
-        icon
+        value="3"
         to="/profile"
-        large
       >
           <v-icon dark x-large>mdi-account-circle</v-icon>
       </v-btn> 
     </v-bottom-navigation>
-
-
 
     <!--Footer-->
     <!-- <v-footer app>
@@ -132,7 +132,7 @@ export default {
     RiskIcon
   },
   data: () => ({
-    activeBtn: 1,
+    activeBtn: '',
     activeComponent: 'Home',
     drawer: false,
     profilePages: [
@@ -183,11 +183,6 @@ export default {
 </script>
 
 <style>
-.main-container{
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-  /* height: 90vh; */
-}
 .align-items-center{
   align-items: center;
 }

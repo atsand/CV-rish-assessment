@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-text-field
-          label="My Age"
+          label="Age"
           v-model="age"
           type="number"
           >
